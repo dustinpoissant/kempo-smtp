@@ -1,0 +1,39 @@
+{
+  "docs": "https://github.com/dustinpoissant/kempo-smtp#readme",
+  "git": "https://github.com/dustinpoissant/kempo-smtp",
+  "hooks": {
+    "email:send": "./hooks/send.js"
+  },
+  "settings": [
+    {
+      "name": "smtp_host",
+      "value": "",
+      "type": "string",
+      "description": "The address of your SMTP server, such as smtp.hostinger.com. Your email provider lists it with the mailbox settings"
+    },
+    {
+      "name": "smtp_port",
+      "value": "465",
+      "type": "number",
+      "description": "The SMTP port: 465 for a connection that is secure from the start, 587 for one that upgrades to secure"
+    },
+    {
+      "name": "smtp_secure",
+      "value": "true",
+      "type": "boolean",
+      "description": "Secure from the start (turn on for port 465). Turn off for port 587, which upgrades to a secure connection after connecting"
+    },
+    {
+      "name": "smtp_user",
+      "value": "",
+      "type": "string",
+      "description": "The username to sign in with, which is usually the full mailbox address such as orders@yourdomain.com. Leave empty for a server that needs none"
+    },
+    {
+      "name": "smtp_password",
+      "value": "",
+      "type": "secret",
+      "description": "The password of that mailbox. Stored encrypted and never shown again"
+    }
+  ]
+}

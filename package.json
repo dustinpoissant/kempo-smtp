@@ -1,0 +1,38 @@
+{
+  "name": "kempo-smtp",
+  "version": "0.1.0",
+  "description": "Sends the emails kempo logs through any SMTP server: a Hostinger or Google Workspace mailbox, Amazon SES, Mailgun, or a mail server of your own.",
+  "license": "MIT",
+  "author": "Dustin Poissant",
+  "type": "module",
+  "scripts": {
+    "test": "node --test"
+  },
+  "files": [
+    "admin",
+    "hooks",
+    "server",
+    "install.js",
+    "update.js",
+    "uninstall.js",
+    "kempo-config.json"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/dustinpoissant/kempo-smtp.git"
+  },
+  "dependencies": {
+    "nodemailer": "^7.0.0"
+  },
+  "devDependencies": {
+    "smtp-server": "^3.13.0"
+  },
+  "peerDependencies": {
+    "kempo": ">=4.8.0"
+  },
+  "exports": {
+    "./install": "./install.js",
+    "./update": "./update.js",
+    "./uninstall": "./uninstall.js"
+  }
+}
