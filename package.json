@@ -1,6 +1,6 @@
 {
   "name": "kempo-smtp",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "Sends the emails kempo logs through any SMTP server: a Hostinger or Google Workspace mailbox, Amazon SES, Mailgun, or a mail server of your own.",
   "license": "MIT",
   "author": "Dustin Poissant",
