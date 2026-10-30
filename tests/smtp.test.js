@@ -130,7 +130,7 @@ test('the config declares the hook, the password is a secret, and the files it n
   assert.ok(existsSync(path.join(root, 'hooks', 'send.js')));
   const types = Object.fromEntries(config.settings.map(setting => [setting.name, setting.type]));
   assert.deepEqual(types, { smtp_host: 'string', smtp_port: 'number', smtp_secure: 'boolean', smtp_user: 'string', smtp_password: 'secret' });
-  const tab = await readFile(path.join(root, 'admin', 'settings-tab.global.html'), 'utf8');
+  const tab = await readFile(path.join(root, 'admin', 'emails-tab.global.html'), 'utf8');
   assert.match(tab, /<k-settings-panel owner="kempo-smtp">/);
 });
 
