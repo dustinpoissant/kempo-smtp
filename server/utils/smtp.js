@@ -65,7 +65,7 @@ export const sendWithSmtp = async ({ settings, email, createTransport = options 
   });
 
   try {
-    const info = await transport.sendMail({ from, to: email.to, subject: email.subject, html: email.html, text: htmlToText(email.html) });
+    const info = await transport.sendMail({ from, to: email.to, ...(email.replyTo ? { replyTo: email.replyTo } : {}), subject: email.subject, html: email.html, text: htmlToText(email.html) });
     if(Array.isArray(info.accepted) && info.accepted.length === 0) return { sent: false, error: `The SMTP server did not accept ${email.to}${info.rejected?.length ? ` (rejected: ${info.rejected.join(', ')})` : ''}` };
     return { sent: true, provider: 'smtp', messageId: info.messageId };
   } catch(error) {

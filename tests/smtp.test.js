@@ -54,6 +54,18 @@ test('an email is delivered to a real SMTP server after signing in, with the htm
   assert.match(messages[0].raw, /on its way \(https:\/\/x\.test\/o\/1\)/);
 });
 
+test('a reply-to address becomes the Reply-To header, and an email with none has no such header', async () => {
+  const { messages, port } = await start();
+  const named = await sendWithSmtp({ settings: settings(port), email: { ...email, replyTo: 'Ann Lee <ann@visitor.test>' } });
+  const plain = await sendWithSmtp({ settings: settings(port), email: { ...email, replyTo: null } });
+  assert.equal(named.sent, true);
+  assert.equal(plain.sent, true);
+  assert.match(messages[0].raw, /^Reply-To: Ann Lee <ann@visitor\.test>\r?$/m);
+  assert.doesNotMatch(messages[1].raw, /^Reply-To:/im);
+  assert.equal(messages[0].from, 'shop@example.com');
+  assert.deepEqual(messages[0].to, ['ann@example.com']);
+});
+
 test('a wrong password is reported as one, and nothing is delivered', async () => {
   const { messages, port } = await start();
   const result = await sendWithSmtp({ settings: { ...settings(port), password: 'wrong' }, email });
